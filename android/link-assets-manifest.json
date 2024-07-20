@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/fonts/EncodeSans-Bold.ttf",
+      "sha1": "6107ff4c953035648342c50bd163500dd00e0520"
+    },
+    {
+      "path": "src/fonts/EncodeSans-ExtraBold.ttf",
+      "sha1": "7d65f027602d57c2ddc4394ccd4ddbd61a8bdaaf"
+    },
+    {
+      "path": "src/fonts/EncodeSans-ExtraLight.ttf",
+      "sha1": "da1cfbf7c3db9e05fd5b7054ad6dea3c75389610"
+    },
+    {
+      "path": "src/fonts/EncodeSans-Light.ttf",
+      "sha1": "d01e81f995803f63c09d604b895961cc9c9cc8c0"
+    },
+    {
+      "path": "src/fonts/EncodeSans-Medium.ttf",
+      "sha1": "7a0835b4f779757693e1e362803ec10ae2c4b281"
+    },
+    {
+      "path": "src/fonts/EncodeSans-Regular.ttf",
+      "sha1": "ce0834d49e9192e28b95aaff430072aeeff465fd"
+    },
+    {
+      "path": "src/fonts/EncodeSans-SemiBold.ttf",
+      "sha1": "3d14b52bbeebb1b0e456635fad085cca6cdfa216"
+    },
+    {
+      "path": "src/fonts/EncodeSans-Thin.ttf",
+      "sha1": "ab7e724fd2aeb71d71ab86d347a64fdb70ca0b96"
+    }
+  ]
+}

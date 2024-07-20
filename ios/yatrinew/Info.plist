@@ -47,5 +47,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>EncodeSans-Bold.ttf</string>
+		<string>EncodeSans-ExtraBold.ttf</string>
+		<string>EncodeSans-ExtraLight.ttf</string>
+		<string>EncodeSans-Light.ttf</string>
+		<string>EncodeSans-Medium.ttf</string>
+		<string>EncodeSans-Regular.ttf</string>
+		<string>EncodeSans-SemiBold.ttf</string>
+		<string>EncodeSans-Thin.ttf</string>
+	</array>
 </dict>
 </plist>
