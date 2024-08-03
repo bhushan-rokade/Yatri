@@ -20,14 +20,14 @@ import { TextInput } from 'react-native-gesture-handler';
 import GoogleIcon from '../icons/GoogleIcon';
 import FormInput from '../componets/FormInput';
 import ButtonWithImage from '../componets/ButtonWithImage';
+import CheckBox from '@react-native-community/checkbox';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-export default function Login() {
+export default function Register() {
   const navigation = useNavigation();
-  const [isEmailFocused, setIsEmailFocused] = useState(false);
-  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [toggleOn, setToggleOn] = useState(false);
 
   return (
     <SafeAreaView>
@@ -41,10 +41,21 @@ export default function Login() {
           }}>
           <LeftArrowIcon size={30} color={'white'} />
         </TouchableOpacity>
-        <Text style={styles.headingText}>Sign In</Text>
+        <Text style={styles.headingText}>Registration</Text>
       </View>
       <View style={styles.formView}>
         <View style={styles.innerForm}>
+          <FormInput
+            height={moderateScale(40)}
+            marginbottom={moderateVerticalScale(15)}
+            borderBottomColorActive={colors.secondaryColor}
+            borderBottomColor={colors.grey}
+            borderBottomWidth={1}
+            activeColor={colors.secondaryColor}
+            securedTextEntry={true}
+            placeholder={'Enter Your Name'}
+            labelText={'Full Name'}
+          />
           <FormInput
             height={moderateScale(40)}
             marginbottom={moderateVerticalScale(15)}
@@ -69,23 +80,36 @@ export default function Login() {
             placeholder={'Enter Password'}
             labelText={'Password'}
           />
-          <TouchableOpacity style={styles.forgotTextView}>
-            <Text style={styles.forgotText}>Do not remember the password?</Text>
-          </TouchableOpacity>
+          <View style={styles.agreeView}>
+            <CheckBox
+              value={toggleOn}
+              onValueChange={() => {
+                setToggleOn(!toggleOn);
+              }}
+            />
+            <Text style={styles.agreeText}>
+              I agree with the{' '}
+              <Text
+                style={styles.ruleLink}
+                onPress={() => {
+                  navigation.navigate(routes.RULESMODEL);
+                }}>
+                rules
+              </Text>
+            </Text>
+          </View>
+
           <ButtonWithImage
-            text={'SignIn'}
+            text={'Sign Up'}
             showImage={false}
             backgroundColor={colors.primaryColor}
             width={scale(255)}
             textColor={'white'}
             height={moderateScale(40)}
             buttonStyle={{
-              marginTop: moderateScale(40),
+              marginTop: moderateScale(30),
             }}
             fontsize={scale(17)}
-            onPress={() => {
-              navigation.navigate(routes.HOME);
-            }}
           />
         </View>
       </View>
@@ -97,13 +121,13 @@ export default function Login() {
           </TouchableOpacity>
         </View>
         <Text style={styles.registerText}>
-          Don't have account yet?{' '}
+          Already have an account?{' '}
           <Text
             style={styles.innerRegisterText}
             onPress={() => {
-              navigation.navigate(routes.REGISTER);
+              navigation.navigate(routes.LOGIN);
             }}>
-            Registration
+            Login
           </Text>
         </Text>
       </View>
@@ -112,6 +136,21 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+  ruleLink: {
+    color: colors.linkViolet,
+    textDecorationLine: 'underline',
+    textDecorationColor: colors.linkViolet,
+    textDecorationStyle: 'solid',
+  },
+  agreeText: {
+    fontFamily: font.normal,
+    color: colors.grey,
+  },
+  agreeView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: moderateVerticalScale(10),
+  },
   registerText: {
     marginTop: moderateVerticalScale(80),
     alignSelf: 'center',
@@ -132,58 +171,33 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonContainer: {
-    marginTop: moderateVerticalScale(200),
+    marginTop: moderateVerticalScale(230),
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  signInText: {
-    color: 'white',
-    fontFamily: font.semiBold,
-    fontSize: scale(14),
-  },
-  signInBtn: {
-    alignSelf: 'center',
-    marginTop: moderateVerticalScale(35),
-    height: moderateScale(40),
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: scale(255),
-    backgroundColor: colors.primaryColor,
   },
   forgotTextView: {
     alignSelf: 'flex-end',
   },
   forgotText: {
-    fontSize: scale(10),
+    fontSize: scale(8),
     color: colors.linkViolet,
     fontFamily: font.medium,
-  },
-  textInput: {
-    borderBottomColor: colors.grey,
-    borderBottomWidth: 1,
-    height: moderateScale(40),
-  },
-  textFieldText: {
-    color: colors.grey,
-    fontSize: scale(11),
-    fontFamily: font.normal,
   },
   textFieldView: {
     marginBottom: moderateVerticalScale(20),
   },
   innerForm: {
     backgroundColor: 'white',
-    height: moderateScale(240),
+    height: moderateScale(330),
     width: moderateScale(275),
     alignSelf: 'center',
   },
   formView: {
-    height: moderateVerticalScale(280),
+    height: moderateVerticalScale(370),
     backgroundColor: 'white',
     position: 'absolute',
     width: windowWidth / 1.1,
-    top: moderateVerticalScale(160),
+    top: moderateVerticalScale(120),
     alignSelf: 'center',
     borderRadius: 25,
     zIndex: 3,
@@ -196,8 +210,8 @@ const styles = StyleSheet.create({
   },
   headingText: {
     fontSize: scale(30),
-    marginTop: moderateVerticalScale(30),
-    marginLeft: moderateScale(40),
+    marginTop: moderateVerticalScale(10),
+    marginLeft: moderateScale(30),
     color: 'white',
     fontFamily: font.bold,
   },

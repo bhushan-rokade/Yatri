@@ -1,6 +1,9 @@
 export const colors = {
   primaryColor: '#34C759',
   secondaryColor: '#4552CB',
+  grey: '#BBC3CE',
+  black: 'black',
+  linkViolet: '#4552CB',
 };
 export const font = {
   normal: 'EncodeSans-Regular',
@@ -16,4 +19,7 @@ export const font = {
 export const routes = {
   ONBOARD: 'Onboard',
   LOGIN: 'Login',
+  REGISTER: 'Register',
+  RULESMODEL: 'RulesModel',
+  HOME: 'Home',
 };

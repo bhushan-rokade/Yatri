@@ -4,7 +4,6 @@ import {
   Text,
   SafeAreaView,
   Dimensions,
-  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 import React from 'react';
@@ -14,6 +13,7 @@ import {
   scale,
 } from 'react-native-size-matters';
 import GoogleIcon from '../icons/GoogleIcon';
+import ButtonWithImage from '../componets/ButtonWithImage';
 import { colors, font, routes } from '../utils/constants';
 import { useNavigation } from '@react-navigation/native';
 
@@ -29,14 +29,34 @@ export default function Onboard() {
         <Text style={styles.headingText}>Welcome To</Text>
         <Text style={styles.headingText2}>Yatri</Text>
         <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.btnGoogle}>
-            <GoogleIcon width={scale(30)} height={scale(30)} color='#4285F4' />
+          <ButtonWithImage
+            onPress={() => {}}
+            text='Continue With Google'
+            ImageComponent={GoogleIcon}
+            showImage={true}
+            backgroundColor='white'
+            textColor={colors.secondaryColor}
+            borderRadius={scale(20)}
+            height={scale(40)}
+            imageSize={scale(30)}
+            width={windowWidth / 1.3}
+            imageColor={colors.secondaryColor}
+          />
 
-            <Text style={styles.googleText}>Continue With Google</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btnEmail}>
-            <Text style={styles.emailText}>Register With Email</Text>
-          </TouchableOpacity>
+          <ButtonWithImage
+            onPress={() => {
+              navigation.navigate(routes.REGISTER);
+            }}
+            text='Register With Email'
+            showImage={false}
+            backgroundColor='transparent'
+            textColor='white'
+            borderRadius={scale(20)}
+            borderColor='white'
+            borderWidth={1}
+            height={scale(40)}
+            width={windowWidth / 1.3}
+          />
         </View>
         <View style={styles.signInTextView}>
           <Text style={styles.signInText}>
@@ -69,41 +89,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: font.bold,
   },
-  googleText: {
-    color: colors.secondaryColor,
-    fontSize: scale(13),
-    marginLeft: moderateScale(12),
-    fontFamily: font.semiBold,
-  },
-  btnGoogle: {
-    width: moderateScale(290),
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    height: scale(40),
-    borderRadius: scale(20),
-    flexDirection: 'row',
-  },
-  btnEmail: {
-    width: moderateScale(290),
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    height: scale(40),
-    marginTop: moderateVerticalScale(30),
-    borderRadius: scale(20),
-    flexDirection: 'row',
-    borderColor: 'white',
-    borderWidth: 1,
-  },
-  emailText: {
-    color: 'white',
-    fontSize: scale(13),
-    fontFamily: font.semiBold,
-  },
   buttonView: {
     marginTop: moderateVerticalScale(60),
+    gap: 20,
   },
   headingText: {
     fontSize: scale(40),
