@@ -22,4 +22,7 @@ export const routes = {
   REGISTER: 'Register',
   RULESMODEL: 'RulesModel',
   HOME: 'Home',
+  PROFILE: 'Profile',
+  MYTRIPS: 'MyTrips',
+  LIKED: 'Liked',
 };

@@ -6,6 +6,9 @@ import Login from '../src/screens/Login';
 import Register from '../src/screens/Register';
 import RulesModal from '../src/screens/Modals/RulesModal';
 import Home from '../src/screens/Home';
+import Profile from '../src/screens/Profile';
+import MyTrips from '../src/screens/MyTrips';
+import Liked from '../src/screens/Liked';
 
 const Stack = createStackNavigator();
 
@@ -61,6 +64,33 @@ function MyStack() {
         <Stack.Screen
           name={routes.HOME}
           component={Home}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.PROFILE}
+          component={Profile}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.MYTRIPS}
+          component={MyTrips}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.LIKED}
+          component={Liked}
           options={{
             animationEnabled: true,
             animationTypeForReplace: 'push',
