@@ -20,8 +20,9 @@ import { colors, font, routes } from '../utils/constants';
 import EditIcon from './../icons/EditIcon';
 import PlaneIcon from './../icons/PlaneIcon';
 import RightArrowIcon from './../icons/RightArrowIcon';
-import SettingIcon from './../icons/SettingIcon';
+import { OpenLockIcon, ClosedLockIcon } from './../icons/Locks';
 import HeartIcon from './../icons/HeartIcon';
+import QuestionMarkCircleIcon from '../icons/QuestionMarkCircle';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -29,11 +30,7 @@ export default function Profile() {
   const navigation = useNavigation();
   return (
     <>
-      <StatusBar
-        translucent
-        backgroundColor='transparent'
-        barStyle='dark-content'
-      />
+      <StatusBar translucent backgroundColor='white' barStyle='dark-content' />
       <View style={styles.container1}>
         <View style={styles.headerView}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -85,41 +82,39 @@ export default function Profile() {
           </View>
           <RightArrowIcon size={scale(23)} color='grey' />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.FORGOTPASSWORD)}>
           <View style={styles.innerMenu}>
             <View style={styles.iconView}>
-              <PlaneIcon size={scale(23)} color='black' />
+              <OpenLockIcon size={scale(23)} color='black' />
             </View>
-            <Text style={styles.menuHeading}>My Trips</Text>
+            <Text style={styles.menuHeading}>Forgot Password</Text>
+          </View>
+          <RightArrowIcon size={scale(23)} color='grey' />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.CHANGEPASSWORD)}>
+          <View style={styles.innerMenu}>
+            <View style={styles.iconView}>
+              <ClosedLockIcon size={scale(23)} color='black' />
+            </View>
+            <Text style={styles.menuHeading}>Change Password</Text>
           </View>
           <RightArrowIcon size={scale(23)} color='grey' />
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
           <View style={styles.innerMenu}>
             <View style={styles.iconView}>
-              <PlaneIcon size={scale(23)} color='black' />
+              <QuestionMarkCircleIcon size={scale(23)} color='black' />
             </View>
-            <Text style={styles.menuHeading}>My Trips</Text>
+            <Text style={styles.menuHeading}>Help & Support</Text>
           </View>
           <RightArrowIcon size={scale(23)} color='grey' />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <View style={styles.innerMenu}>
-            <View style={styles.iconView}>
-              <PlaneIcon size={scale(23)} color='black' />
-            </View>
-            <Text style={styles.menuHeading}>My Trips</Text>
-          </View>
-          <RightArrowIcon size={scale(23)} color='grey' />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <View style={styles.innerMenu}>
-            <View style={styles.iconView}>
-              <SettingIcon size={scale(23)} color='black' />
-            </View>
-            <Text style={styles.menuHeading}>Settings</Text>
-          </View>
-          <RightArrowIcon size={scale(23)} color='grey' />
+        <TouchableOpacity style={styles.logoutBtn}>
+          <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>
     </>
@@ -127,9 +122,25 @@ export default function Profile() {
 }
 
 const styles = StyleSheet.create({
+  logoutText: {
+    fontFamily: font.bold,
+    color: '#009B8D',
+    fontSize: scale(14),
+  },
+  logoutBtn: {
+    marginTop: moderateVerticalScale(30),
+    alignSelf: 'center',
+    borderWidth: 1,
+    width: moderateScale(250),
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: moderateVerticalScale(45),
+    borderRadius: scale(10),
+    borderColor: '#009B8D',
+  },
   container1: {
     paddingTop: moderateVerticalScale(40),
-    height: moderateVerticalScale(330),
+    height: moderateVerticalScale(320),
     width: windowWidth,
     borderRadius: scale(20),
     position: 'absolute',
@@ -157,15 +168,13 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
   },
   iconView: {
-    borderWidth: 0.5,
     padding: scale(10),
-    borderRadius: scale(25),
     justifyContent: 'center',
     alignItems: 'center',
   },
   innerMenu: {
     flexDirection: 'row',
-    width: scale(105),
+    width: scale(125),
     alignItems: 'center',
   },
   headerView: {
@@ -191,7 +200,7 @@ const styles = StyleSheet.create({
     width: scale(38),
   },
   imageView: {
-    height: moderateVerticalScale(180),
+    height: moderateVerticalScale(150),
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -218,7 +227,8 @@ const styles = StyleSheet.create({
     fontSize: scale(18),
   },
   userName: {
-    fontFamily: font.light,
+    fontFamily: font.Bold,
+    color: colors.grey,
     fontSize: scale(14),
   },
   menuHeading: {

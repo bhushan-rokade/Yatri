@@ -9,6 +9,9 @@ import Home from '../src/screens/Home';
 import Profile from '../src/screens/Profile';
 import MyTrips from '../src/screens/MyTrips';
 import Liked from '../src/screens/Liked';
+import ForgotPassword from '../src/screens/ForgotPassword';
+import EnterOtp from '../src/screens/EnterOtp';
+import ChangePassword from '../src/screens/ChangePassword';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +43,26 @@ function MyStack() {
           }}
         />
         <Stack.Screen
+          name={routes.FORGOTPASSWORD}
+          component={ForgotPassword}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'pop',
+            presentation: 'screen',
+            animationType: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name={routes.ENTEROTP}
+          component={EnterOtp}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'pop',
+            presentation: 'screen',
+            animationType: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
           name={routes.REGISTER}
           component={Register}
           options={{
@@ -64,6 +87,15 @@ function MyStack() {
         <Stack.Screen
           name={routes.HOME}
           component={Home}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.CHANGEPASSWORD}
+          component={ChangePassword}
           options={{
             animationEnabled: true,
             animationTypeForReplace: 'push',

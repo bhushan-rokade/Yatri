@@ -4,6 +4,7 @@ export const colors = {
   grey: '#BBC3CE',
   black: 'black',
   linkViolet: '#4552CB',
+  lightgrey: '#f6f8fe',
 };
 export const font = {
   normal: 'EncodeSans-Regular',
@@ -25,4 +26,7 @@ export const routes = {
   PROFILE: 'Profile',
   MYTRIPS: 'MyTrips',
   LIKED: 'Liked',
+  FORGOTPASSWORD: 'Forgot_Password',
+  ENTEROTP: 'EnterOtp',
+  CHANGEPASSWORD: 'ChangePassword',
 };

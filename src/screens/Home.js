@@ -136,8 +136,17 @@ export default function Home() {
                   onPress={() => {
                     setSearchText('');
                   }}
-                  style={{ alignSelf: 'center' }}>
-                  <Text style={{ fontFamily: font.bold }}>x</Text>
+                  style={{
+                    alignSelf: 'center',
+                    width: moderateScale(30),
+                    height: moderateScale(30),
+                    marginLeft: moderateScale(15),
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{ fontFamily: font.bold, fontSize: scale(13) }}>
+                    X
+                  </Text>
                 </TouchableOpacity>
               )}
             </View>

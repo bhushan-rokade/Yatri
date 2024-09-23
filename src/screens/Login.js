@@ -70,7 +70,13 @@ export default function Login() {
             labelText={'Password'}
           />
           <TouchableOpacity style={styles.forgotTextView}>
-            <Text style={styles.forgotText}>Do not remember the password?</Text>
+            <Text
+              style={styles.forgotText}
+              onPress={() => {
+                navigation.navigate(routes.FORGOTPASSWORD);
+              }}>
+              Do not remember the password?
+            </Text>
           </TouchableOpacity>
           <ButtonWithImage
             text={'SignIn'}

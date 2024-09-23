@@ -19,6 +19,36 @@ import ClockIcon from '../icons/ClockIcon';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+const data = [
+  {
+    title: 'Harihar Fort',
+    location: 'Nashik,Maharashtra',
+    image: './../assets/Images/raigad.jpg',
+    daysRemaining: 10,
+    date: '22 March 2024,Thu',
+  },
+  {
+    title: 'Harihar Fort',
+    location: 'Nashik,Maharashtra',
+    image: './../assets/Images/raigad.jpg',
+    daysRemaining: 10,
+    date: '22 March 2024,Thu',
+  },
+  {
+    title: 'Harihar Fort',
+    location: 'Nashik,Maharashtra',
+    image: './../assets/Images/raigad.jpg',
+    daysRemaining: 10,
+    date: '22 March 2024,Thu',
+  },
+  {
+    title: 'Harihar Fort',
+    location: 'Nashik,Maharashtra',
+    image: './../assets/Images/raigad.jpg',
+    daysRemaining: 10,
+    date: '22 March 2024,Thu',
+  },
+];
 export default function MyTrips() {
   const [selectedMenu, setSelectedMenu] = useState('Upcoming');
   return (
@@ -55,42 +85,45 @@ export default function MyTrips() {
       </View>
       <View style={styles.container1}>
         <ScrollView style={styles.scrollView}>
-          <View style={styles.tripListItem}>
-            <View style={styles.titleView}>
-              <View style={styles.imageBackView}>
-                <Image
-                  source={require('./../assets/Images/raigad.jpg')}
-                  style={styles.imageStyle}
-                />
-              </View>
-              <View style={styles.innerTitleView}>
-                <Text style={styles.title}>Raigad</Text>
-                <Text style={styles.userName}>@ rokade_bhushan</Text>
-                <View style={styles.mainTag}>
-                  <Text style={styles.tagText}>Nature</Text>
+          {data.map((item, index) => {
+            return (
+              <View style={styles.tripListItem} key={index}>
+                <View style={styles.dateView}>
+                  <Text style={styles.dateText}>{item.date}</Text>
+                </View>
+                <View style={styles.titleView}>
+                  <View style={styles.imageBackView}>
+                    <Image
+                      source={require('./../assets/Images/raigad.jpg')}
+                      style={styles.imageStyle}
+                    />
+                  </View>
+                  <View style={styles.detailsView}>
+                    <Text style={styles.detailsTitle}>{item.title}</Text>
+                    <Text style={styles.detailsLoc}>{item.location}</Text>
+                    <View style={styles.timeView}>
+                      <ClockIcon size={scale(14)} color='grey' />
+                      <Text style={styles.timeText}>
+                        {item.daysRemaining} days remaining...
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.buttonView}>
+                  <TouchableOpacity style={styles.viewBtn}>
+                    <Text style={[styles.btnText, { color: '#009B8D' }]}>
+                      View
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.cancelBtn}>
+                    <Text style={[styles.btnText, { color: '#FF784B' }]}>
+                      Cancel
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               </View>
-            </View>
-            <View style={styles.detailsView}>
-              <View style={styles.clockView}>
-                <ClockIcon size={scale(20)} />
-              </View>
-              <Text style={styles.timingDate}>Wed 10th Sept</Text>
-            </View>
-            <View style={styles.actionView}>
-              <TouchableOpacity style={styles.editBtn}>
-                <Text style={[styles.btnsText, { color: 'white' }]}>
-                  Details
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.editBtn, { backgroundColor: 'red' }]}>
-                <Text style={[styles.btnsText, { color: 'white' }]}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+            );
+          })}
         </ScrollView>
       </View>
     </>
@@ -98,6 +131,66 @@ export default function MyTrips() {
 }
 
 const styles = StyleSheet.create({
+  cancelBtn: {
+    borderWidth: 1,
+    width: moderateScale(100),
+    alignItems: 'center',
+    borderColor: '#FF784B',
+    height: moderateVerticalScale(40),
+    justifyContent: 'center',
+    borderRadius: scale(12),
+  },
+  viewBtn: {
+    borderWidth: 1,
+    width: moderateScale(100),
+    alignItems: 'center',
+    borderColor: '#009B8D',
+    height: moderateVerticalScale(40),
+    justifyContent: 'center',
+    borderRadius: scale(12),
+  },
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: moderateScale(60),
+    height: moderateScale(40),
+    alignItems: 'center',
+    marginTop: moderateVerticalScale(10),
+  },
+  timeText: {
+    fontSize: scale(11),
+    color: 'grey',
+    fontFamily: font.semiBold,
+  },
+  timeView: {
+    flexDirection: 'row',
+    gap: scale(5),
+    alignItems: 'center',
+    marginTop: scale(8),
+  },
+  detailsLoc: {
+    fontSize: scale(10),
+    fontFamily: font.light,
+    marginTop: moderateVerticalScale(3),
+  },
+  detailsTitle: {
+    fontSize: scale(17),
+    fontFamily: font.bold,
+  },
+  detailsView: {
+    marginLeft: moderateVerticalScale(15),
+    height: moderateScale(70),
+    width: moderateScale(200),
+  },
+  dateText: {
+    fontFamily: font.semiBold,
+    fontSize: scale(13),
+    color: colors.grey,
+  },
+  dateView: {
+    marginTop: moderateVerticalScale(20),
+    marginLeft: moderateScale(25),
+  },
   tagText: {
     fontFamily: font.semiBold,
     fontSize: scale(12),
@@ -120,47 +213,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: moderateVerticalScale(50),
-    gap: moderateScale(20),
+    gap: moderateScale(10),
     marginTop: moderateVerticalScale(8),
-  },
-  timingDate: {
-    marginLeft: moderateScale(17),
-    fontFamily: font.semiBold,
-    fontSize: scale(12),
-  },
-  clockView: {
-    padding: scale(8),
-    backgroundColor: '#E9E9E9',
-    borderRadius: scale(28),
-    marginLeft: moderateScale(20),
-  },
-  detailsView: {
-    width: moderateScale(270),
-    backgroundColor: '#F8F7FB',
-    marginHorizontal: scale(30),
-    height: moderateVerticalScale(50),
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'row',
-    borderRadius: scale(15),
-    marginTop: scale(0),
-  },
-  mainTag: {
-    width: scale(60),
-    backgroundColor: '#E9E9E9',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: moderateVerticalScale(25),
-    borderRadius: scale(15),
-  },
-  userName: {
-    fontFamily: font.semiBold,
-    fontSize: scale(12),
   },
   title: {
     fontFamily: font.bold,
     fontSize: scale(16),
-    marginTop: scale(8),
+    marginTop: scale(0),
   },
   innerTitleView: {
     marginLeft: moderateScale(15),
@@ -185,12 +244,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginTop: scale(5),
+    marginTop: scale(1),
   },
   container1: {
     backgroundColor: '#F7F7F7',
     height: '100%',
-    paddingTop: moderateVerticalScale(190),
+    paddingTop: moderateVerticalScale(170),
   },
   container2: {
     backgroundColor: 'white',
@@ -245,11 +304,12 @@ const styles = StyleSheet.create({
     fontSize: scale(13),
   },
   tripListItem: {
-    height: moderateVerticalScale(225),
+    height: moderateVerticalScale(215),
     backgroundColor: 'white',
     marginBottom: moderateVerticalScale(20),
     marginHorizontal: moderateScale(15),
     borderRadius: scale(25),
+    marginTop: moderateVerticalScale(3),
     elevation: 2,
   },
 });
