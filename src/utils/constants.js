@@ -29,4 +29,5 @@ export const routes = {
   FORGOTPASSWORD: 'Forgot_Password',
   ENTEROTP: 'EnterOtp',
   CHANGEPASSWORD: 'ChangePassword',
+  HELPANDSUPPORT: 'HelpSupport',
 };

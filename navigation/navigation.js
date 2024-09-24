@@ -12,6 +12,7 @@ import Liked from '../src/screens/Liked';
 import ForgotPassword from '../src/screens/ForgotPassword';
 import EnterOtp from '../src/screens/EnterOtp';
 import ChangePassword from '../src/screens/ChangePassword';
+import HelpSupport from '../src/screens/HelpSupport';
 
 const Stack = createStackNavigator();
 
@@ -96,6 +97,15 @@ function MyStack() {
         <Stack.Screen
           name={routes.CHANGEPASSWORD}
           component={ChangePassword}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.HELPANDSUPPORT}
+          component={HelpSupport}
           options={{
             animationEnabled: true,
             animationTypeForReplace: 'push',
