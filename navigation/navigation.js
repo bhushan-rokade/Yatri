@@ -1,18 +1,18 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import Onboard from '../src/screens/Onboard';
+import Onboard from '../src/screens/Onboard/Onboard';
 import { NavigationContainer } from '@react-navigation/native';
 import { routes } from '../src/utils/constants';
-import Login from '../src/screens/Login';
-import Register from '../src/screens/Register';
+import Login from '../src/screens/Login/Login';
+import Register from '../src/screens/Register/Register';
 import RulesModal from '../src/screens/Modals/RulesModal';
-import Home from '../src/screens/Home';
-import Profile from '../src/screens/Profile';
-import MyTrips from '../src/screens/MyTrips';
-import Liked from '../src/screens/Liked';
-import ForgotPassword from '../src/screens/ForgotPassword';
-import EnterOtp from '../src/screens/EnterOtp';
-import ChangePassword from '../src/screens/ChangePassword';
-import HelpSupport from '../src/screens/HelpSupport';
+import Home from '../src/screens/Home/Home';
+import Profile from '../src/screens/Profile/Profile';
+import MyTrips from '../src/screens/MyTrips/MyTrips';
+import Liked from '../src/screens/Liked/Liked';
+import ForgotPassword from '../src/screens/ForgotPassword/ForgotPassword';
+import EnterOtp from '../src/screens/EnterOtp/EnterOtp';
+import ChangePassword from '../src/screens/ChangePassword/ChangePassword';
+import HelpSupport from '../src/screens/HelpSupport/HelpSupport';
 
 const Stack = createStackNavigator();
 

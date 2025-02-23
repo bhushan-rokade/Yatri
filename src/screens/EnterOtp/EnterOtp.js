@@ -14,11 +14,11 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import { colors, font, routes } from '../utils/constants';
-import LeftArrowIcon from '../icons/LeftArrow';
+import { colors, font, routes } from '../../utils/constants';
+import LeftArrowIcon from '../../icons/LeftArrow';
 import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import ButtonWithImage from '../componets/ButtonWithImage';
+import ButtonWithImage from '../../componets/ButtonWithImage';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;

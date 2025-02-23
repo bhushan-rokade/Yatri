@@ -15,15 +15,15 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import LeftArrowIcon from '../icons/LeftArrow';
+import LeftArrowIcon from '../../icons/LeftArrow';
 import { useNavigation } from '@react-navigation/native';
-import { colors, font, routes } from '../utils/constants';
-import EditIcon from './../icons/EditIcon';
-import PlaneIcon from './../icons/PlaneIcon';
-import RightArrowIcon from './../icons/RightArrowIcon';
-import { OpenLockIcon, ClosedLockIcon } from './../icons/Locks';
-import HeartIcon from './../icons/HeartIcon';
-import QuestionMarkCircleIcon from '../icons/QuestionMarkCircle';
+import { colors, font, routes } from '../../utils/constants';
+import EditIcon from '../../icons/EditIcon';
+import PlaneIcon from '../../icons/PlaneIcon';
+import RightArrowIcon from '../../icons/RightArrowIcon';
+import { OpenLockIcon, ClosedLockIcon } from '../../icons/Locks';
+import HeartIcon from '../../icons/HeartIcon';
+import QuestionMarkCircleIcon from '../../icons/QuestionMarkCircle';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;

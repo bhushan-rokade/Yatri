@@ -11,17 +11,17 @@ import {
   ImageBackground,
   Image,
 } from 'react-native';
-import { colors, font, routes } from '../utils/constants';
+import { colors, font, routes } from '../../utils/constants';
 import {
   moderateScale,
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import UserIcon from '../icons/User';
-import DownArrowIcon from '../icons/DownArrowIcon';
-import SearchIcon from '../icons/SearchIcon';
-import ClockIcon from '../icons/ClockIcon';
-import CalendarIcon from '../icons/CalendarIcon';
+import UserIcon from '../../icons/User';
+import DownArrowIcon from '../../icons/DownArrowIcon';
+import SearchIcon from '../../icons/SearchIcon';
+import ClockIcon from '../../icons/ClockIcon';
+import CalendarIcon from '../../icons/CalendarIcon';
 import { useNavigation } from '@react-navigation/native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -39,25 +39,25 @@ const upcomingData = [
     daysRemaining: 3,
     locationName: 'Raigad',
     personName: 'Bhushan Rokade',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
   {
     daysRemaining: 5,
     locationName: 'Sinhagad',
     personName: 'Kalpesh Kulkarni',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
   {
     daysRemaining: 6,
     locationName: 'Tamhini Ghat',
     personName: 'Bhushan Mote',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
   {
     daysRemaining: 10,
     locationName: 'Malshej Ghat',
     personName: 'Andurag Gaikwad',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
 ];
 const forYouData = [
@@ -65,25 +65,25 @@ const forYouData = [
     date: '3 / 1 / 2023',
     locationName: 'Harihar',
     personName: 'Bhushan Rokade',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
   {
     date: '10 / 2 / 2024',
     locationName: 'Anjineri',
     personName: 'Mayur Koli',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
   {
     date: '7 / 6 / 2024',
     locationName: 'Pandavleni',
     personName: 'Aditya Gaikwad',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
   {
     date: '1 / 1 / 2025',
     locationName: 'Visapur Fort',
     personName: 'Aditya Waghmare',
-    image: './../assets/Images/raigad.jpg',
+    image: './../../assets/Images/raigad.jpg',
   },
 ];
 export default function Home() {
@@ -194,7 +194,7 @@ export default function Home() {
                         key={index}
                         style={styles.upcomingItemContainer}
                         imageStyle={styles.bgimageStyle}
-                        source={require('./../assets/Images/raigad.jpg')}>
+                        source={require('./../../assets/Images/raigad.jpg')}>
                         <TouchableOpacity style={styles.upcomingItem}>
                           <View style={styles.locationTextView}>
                             <ClockIcon color='white' size={scale(15)} />
@@ -236,7 +236,7 @@ export default function Home() {
                   return (
                     <TouchableOpacity style={styles.forYouItem} key={index}>
                       <Image
-                        source={require('./../assets/Images/raigad.jpg')}
+                        source={require('./../../assets/Images/raigad.jpg')}
                         style={styles.forYouImage}
                       />
                       <View style={styles.forYouInfoView}>

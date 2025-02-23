@@ -13,21 +13,21 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import { colors, font, routes } from '../utils/constants';
-import LeftArrowIcon from '../icons/LeftArrow';
+import { colors, font, routes } from '../../utils/constants';
+import LeftArrowIcon from '../../icons/LeftArrow';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
-import GoogleIcon from '../icons/GoogleIcon';
-import FormInput from '../componets/FormInput';
-import ButtonWithImage from '../componets/ButtonWithImage';
-import CheckBox from '@react-native-community/checkbox';
+import GoogleIcon from '../../icons/GoogleIcon';
+import FormInput from '../../componets/FormInput';
+import ButtonWithImage from '../../componets/ButtonWithImage';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-export default function Register() {
+export default function Login() {
   const navigation = useNavigation();
-  const [toggleOn, setToggleOn] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   return (
     <SafeAreaView>
@@ -41,21 +41,10 @@ export default function Register() {
           }}>
           <LeftArrowIcon size={30} color={'white'} />
         </TouchableOpacity>
-        <Text style={styles.headingText}>Registration</Text>
+        <Text style={styles.headingText}>Sign In</Text>
       </View>
       <View style={styles.formView}>
         <View style={styles.innerForm}>
-          <FormInput
-            height={moderateScale(40)}
-            marginbottom={moderateVerticalScale(15)}
-            borderBottomColorActive={colors.secondaryColor}
-            borderBottomColor={colors.grey}
-            borderBottomWidth={1}
-            activeColor={colors.secondaryColor}
-            securedTextEntry={true}
-            placeholder={'Enter Your Name'}
-            labelText={'Full Name'}
-          />
           <FormInput
             height={moderateScale(40)}
             marginbottom={moderateVerticalScale(15)}
@@ -80,36 +69,29 @@ export default function Register() {
             placeholder={'Enter Password'}
             labelText={'Password'}
           />
-          <View style={styles.agreeView}>
-            <CheckBox
-              value={toggleOn}
-              onValueChange={() => {
-                setToggleOn(!toggleOn);
-              }}
-            />
-            <Text style={styles.agreeText}>
-              I agree with the{' '}
-              <Text
-                style={styles.ruleLink}
-                onPress={() => {
-                  navigation.navigate(routes.RULESMODEL);
-                }}>
-                rules
-              </Text>
+          <TouchableOpacity style={styles.forgotTextView}>
+            <Text
+              style={styles.forgotText}
+              onPress={() => {
+                navigation.navigate(routes.FORGOTPASSWORD);
+              }}>
+              Do not remember the password?
             </Text>
-          </View>
-
+          </TouchableOpacity>
           <ButtonWithImage
-            text={'Sign Up'}
+            text={'SignIn'}
             showImage={false}
             backgroundColor={colors.primaryColor}
             width={scale(255)}
             textColor={'white'}
             height={moderateScale(40)}
             buttonStyle={{
-              marginTop: moderateScale(30),
+              marginTop: moderateScale(40),
             }}
             fontsize={scale(17)}
+            onPress={() => {
+              navigation.navigate(routes.HOME);
+            }}
           />
         </View>
       </View>
@@ -121,13 +103,13 @@ export default function Register() {
           </TouchableOpacity>
         </View>
         <Text style={styles.registerText}>
-          Already have an account?{' '}
+          Don't have account yet?{' '}
           <Text
             style={styles.innerRegisterText}
             onPress={() => {
-              navigation.navigate(routes.LOGIN);
+              navigation.navigate(routes.REGISTER);
             }}>
-            Login
+            Registration
           </Text>
         </Text>
       </View>
@@ -136,21 +118,6 @@ export default function Register() {
 }
 
 const styles = StyleSheet.create({
-  ruleLink: {
-    color: colors.linkViolet,
-    textDecorationLine: 'underline',
-    textDecorationColor: colors.linkViolet,
-    textDecorationStyle: 'solid',
-  },
-  agreeText: {
-    fontFamily: font.normal,
-    color: colors.grey,
-  },
-  agreeView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: moderateVerticalScale(10),
-  },
   registerText: {
     marginTop: moderateVerticalScale(80),
     alignSelf: 'center',
@@ -171,33 +138,58 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonContainer: {
-    marginTop: moderateVerticalScale(230),
+    marginTop: moderateVerticalScale(200),
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  signInText: {
+    color: 'white',
+    fontFamily: font.semiBold,
+    fontSize: scale(14),
+  },
+  signInBtn: {
+    alignSelf: 'center',
+    marginTop: moderateVerticalScale(35),
+    height: moderateScale(40),
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: scale(255),
+    backgroundColor: colors.primaryColor,
   },
   forgotTextView: {
     alignSelf: 'flex-end',
   },
   forgotText: {
-    fontSize: scale(8),
+    fontSize: scale(10),
     color: colors.linkViolet,
     fontFamily: font.medium,
+  },
+  textInput: {
+    borderBottomColor: colors.grey,
+    borderBottomWidth: 1,
+    height: moderateScale(40),
+  },
+  textFieldText: {
+    color: colors.grey,
+    fontSize: scale(11),
+    fontFamily: font.normal,
   },
   textFieldView: {
     marginBottom: moderateVerticalScale(20),
   },
   innerForm: {
     backgroundColor: 'white',
-    height: moderateScale(330),
+    height: moderateScale(240),
     width: moderateScale(275),
     alignSelf: 'center',
   },
   formView: {
-    height: moderateVerticalScale(370),
+    height: moderateVerticalScale(280),
     backgroundColor: 'white',
     position: 'absolute',
     width: windowWidth / 1.1,
-    top: moderateVerticalScale(120),
+    top: moderateVerticalScale(160),
     alignSelf: 'center',
     borderRadius: 25,
     zIndex: 3,
@@ -210,8 +202,8 @@ const styles = StyleSheet.create({
   },
   headingText: {
     fontSize: scale(30),
-    marginTop: moderateVerticalScale(10),
-    marginLeft: moderateScale(30),
+    marginTop: moderateVerticalScale(30),
+    marginLeft: moderateScale(40),
     color: 'white',
     fontFamily: font.bold,
   },

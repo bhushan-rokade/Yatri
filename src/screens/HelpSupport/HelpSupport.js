@@ -10,15 +10,15 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import { colors, font, routes } from '../utils/constants';
+import { colors, font, routes } from '../../utils/constants';
 import {
   moderateScale,
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
-import LeftArrowIcon from '../icons/LeftArrow';
-import EyeIcon from '../icons/EyeIcon';
+import LeftArrowIcon from '../../icons/LeftArrow';
+import EyeIcon from '../../icons/EyeIcon';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 export default function HelpSupport() {

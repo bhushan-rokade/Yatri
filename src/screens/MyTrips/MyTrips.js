@@ -13,9 +13,9 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import { colors, font } from '../utils/constants';
+import { colors, font } from '../../utils/constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ClockIcon from '../icons/ClockIcon';
+import ClockIcon from '../../icons/ClockIcon';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -94,7 +94,7 @@ export default function MyTrips() {
                 <View style={styles.titleView}>
                   <View style={styles.imageBackView}>
                     <Image
-                      source={require('./../assets/Images/raigad.jpg')}
+                      source={require('./../../assets/Images/raigad.jpg')}
                       style={styles.imageStyle}
                     />
                   </View>

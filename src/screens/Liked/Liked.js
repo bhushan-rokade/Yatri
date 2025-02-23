@@ -8,17 +8,17 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import UserIcon from '../icons/User';
-import CalendarIcon from '../icons/CalendarIcon';
+import UserIcon from '../../icons/User';
+import CalendarIcon from '../../icons/CalendarIcon';
 import {
   scale,
   moderateVerticalScale,
   moderateScale,
 } from 'react-native-size-matters';
-import { font, colors, routes } from '../utils/constants';
+import { font, colors, routes } from '../../utils/constants';
 import { ScrollView } from 'react-native-gesture-handler';
-import LeftArrowIcon from '../icons/LeftArrow';
-import RightArrowIcon from '../icons/RightArrowIcon';
+import LeftArrowIcon from '../../icons/LeftArrow';
+import RightArrowIcon from '../../icons/RightArrowIcon';
 import { useNavigation } from '@react-navigation/native';
 
 const forYouData = [
@@ -105,7 +105,7 @@ export default function Liked() {
               <TouchableOpacity style={styles.forYouItem} key={index}>
                 <View style={{ flexDirection: 'row' }}>
                   <Image
-                    source={require('./../assets/Images/raigad.jpg')}
+                    source={require('./../../assets/Images/raigad.jpg')}
                     style={styles.forYouImage}
                   />
                   <View style={styles.forYouInfoView}>

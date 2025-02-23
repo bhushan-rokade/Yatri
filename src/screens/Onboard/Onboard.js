@@ -12,9 +12,9 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import GoogleIcon from '../icons/GoogleIcon';
-import ButtonWithImage from '../componets/ButtonWithImage';
-import { colors, font, routes } from '../utils/constants';
+import GoogleIcon from '../../icons/GoogleIcon';
+import ButtonWithImage from '../../componets/ButtonWithImage';
+import { colors, font, routes } from '../../utils/constants';
 import { useNavigation } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height;
