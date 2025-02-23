@@ -18,8 +18,8 @@ import LeftArrowIcon from '../../icons/LeftArrow';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 import GoogleIcon from '../../icons/GoogleIcon';
-import FormInput from '../../componets/FormInput';
-import ButtonWithImage from '../../componets/ButtonWithImage';
+import FormInput from './FormInput';
+import ButtonWithImage from './ButtonWithImage';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;

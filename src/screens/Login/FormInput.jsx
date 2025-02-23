@@ -5,7 +5,7 @@ import {
   moderateVerticalScale,
   scale,
 } from 'react-native-size-matters';
-import { colors, font } from '../utils/constants';
+import { colors, font } from '../../utils/constants';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function FormInput({

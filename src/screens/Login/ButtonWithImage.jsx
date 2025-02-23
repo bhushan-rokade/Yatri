@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { scale, moderateScale } from 'react-native-size-matters';
-import GoogleIcon from '../icons/GoogleIcon';
-import { colors, font } from '../utils/constants';
+import GoogleIcon from '../../icons/GoogleIcon';
+import { colors, font } from '../../utils/constants';
 
 const ButtonWithImage = ({
   onPress,

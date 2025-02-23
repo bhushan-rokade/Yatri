@@ -4,11 +4,10 @@ import {
   Text,
   StatusBar,
   StyleSheet,
-  Dimensions,
   TouchableOpacity,
-  Image,
   ImageBackground,
-  SafeAreaView,
+  ScrollView,
+  useWindowDimensions,
 } from 'react-native';
 import {
   moderateScale,
@@ -25,108 +24,100 @@ import { OpenLockIcon, ClosedLockIcon } from '../../icons/Locks';
 import HeartIcon from '../../icons/HeartIcon';
 import QuestionMarkCircleIcon from '../../icons/QuestionMarkCircle';
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
 export default function Profile() {
+  const { width: windowWidth } = useWindowDimensions(); // ✅ Correct way to get screen width
   const navigation = useNavigation();
+
   return (
-    <>
-      <SafeAreaView>
-        <StatusBar
-          translucent
-          backgroundColor='white'
-          barStyle='dark-content'
-        />
-        <View style={styles.container1}>
-          <View style={styles.headerView}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <LeftArrowIcon size={scale(33)} color={'black'} />
-            </TouchableOpacity>
-            <Text style={styles.headerText}>Profile</Text>
-            <TouchableOpacity style={styles.editBtn}>
-              <EditIcon size={scale(12)} color={colors.linkViolet} />
-              <Text style={styles.editText}>Edit</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.imageView}>
-            <View style={styles.innerImageView}>
-              <ImageBackground
-                source={{
-                  uri: 'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                }}
-                imageStyle={styles.profileImg}
-              />
-            </View>
-          </View>
-          <View style={styles.nameView}>
-            <Text style={styles.nameHeading}>Bhushan Rokade</Text>
-            <Text style={styles.userName}>@rokade_bhushan</Text>
-          </View>
-        </View>
-        <View style={styles.container2}>
-          <TouchableOpacity
-            style={[styles.menuItem]}
-            onPress={() => navigation.navigate(routes.MYTRIPS)}>
-            <View style={styles.innerMenu}>
-              <View style={styles.iconView}>
-                <PlaneIcon size={scale(23)} color='black' />
-              </View>
-              <Text style={styles.menuHeading}>My Trips</Text>
-            </View>
-            <RightArrowIcon size={scale(23)} color='grey' />
+    <ScrollView>
+      <StatusBar translucent backgroundColor='white' barStyle='dark-content' />
+      <View style={[styles.container1, { width: windowWidth }]}>
+        <View style={styles.headerView}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <LeftArrowIcon size={scale(33)} color={'black'} />
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              navigation.navigate(routes.LIKED);
-            }}>
-            <View style={styles.innerMenu}>
-              <View style={styles.iconView}>
-                <HeartIcon size={scale(23)} color='black' />
-              </View>
-              <Text style={styles.menuHeading}>Liked</Text>
-            </View>
-            <RightArrowIcon size={scale(23)} color='grey' />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => navigation.navigate(routes.FORGOTPASSWORD)}>
-            <View style={styles.innerMenu}>
-              <View style={styles.iconView}>
-                <OpenLockIcon size={scale(23)} color='black' />
-              </View>
-              <Text style={styles.menuHeading}>Forgot Password</Text>
-            </View>
-            <RightArrowIcon size={scale(23)} color='grey' />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => navigation.navigate(routes.CHANGEPASSWORD)}>
-            <View style={styles.innerMenu}>
-              <View style={styles.iconView}>
-                <ClosedLockIcon size={scale(23)} color='black' />
-              </View>
-              <Text style={styles.menuHeading}>Change Password</Text>
-            </View>
-            <RightArrowIcon size={scale(23)} color='grey' />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => navigation.navigate(routes.HELPANDSUPPORT)}>
-            <View style={styles.innerMenu}>
-              <View style={styles.iconView}>
-                <QuestionMarkCircleIcon size={scale(23)} color='black' />
-              </View>
-              <Text style={styles.menuHeading}>Help & Support</Text>
-            </View>
-            <RightArrowIcon size={scale(23)} color='grey' />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.logoutBtn}>
-            <Text style={styles.logoutText}>Logout</Text>
+          <Text style={styles.headerText}>Profile</Text>
+          <TouchableOpacity style={styles.editBtn}>
+            <EditIcon size={scale(12)} color={colors.linkViolet} />
+            <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
-    </>
+        <View style={styles.imageView}>
+          <View style={styles.innerImageView}>
+            <ImageBackground
+              source={{
+                uri: 'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+              }}
+              imageStyle={styles.profileImg}
+            />
+          </View>
+        </View>
+        <View style={styles.nameView}>
+          <Text style={styles.nameHeading}>Bhushan Rokade</Text>
+          <Text style={styles.userName}>@rokade_bhushan</Text>
+        </View>
+      </View>
+      <View style={[styles.container2, { width: windowWidth }]}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.MYTRIPS)}>
+          <View style={styles.innerMenu}>
+            <View style={styles.iconView}>
+              <PlaneIcon size={scale(23)} color='black' />
+            </View>
+            <Text style={styles.menuHeading}>My Trips</Text>
+          </View>
+          <RightArrowIcon size={scale(23)} color='grey' />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.LIKED)}>
+          <View style={styles.innerMenu}>
+            <View style={styles.iconView}>
+              <HeartIcon size={scale(23)} color='black' />
+            </View>
+            <Text style={styles.menuHeading}>Liked</Text>
+          </View>
+          <RightArrowIcon size={scale(23)} color='grey' />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.FORGOTPASSWORD)}>
+          <View style={styles.innerMenu}>
+            <View style={styles.iconView}>
+              <OpenLockIcon size={scale(23)} color='black' />
+            </View>
+            <Text style={styles.menuHeading}>Forgot Password</Text>
+          </View>
+          <RightArrowIcon size={scale(23)} color='grey' />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.CHANGEPASSWORD)}>
+          <View style={styles.innerMenu}>
+            <View style={styles.iconView}>
+              <ClosedLockIcon size={scale(23)} color='black' />
+            </View>
+            <Text style={styles.menuHeading}>Change Password</Text>
+          </View>
+          <RightArrowIcon size={scale(23)} color='grey' />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate(routes.HELPANDSUPPORT)}>
+          <View style={styles.innerMenu}>
+            <View style={styles.iconView}>
+              <QuestionMarkCircleIcon size={scale(23)} color='black' />
+            </View>
+            <Text style={styles.menuHeading}>Help & Support</Text>
+          </View>
+          <RightArrowIcon size={scale(23)} color='grey' />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.logoutBtn}>
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -150,7 +141,6 @@ const styles = StyleSheet.create({
   container1: {
     paddingTop: moderateVerticalScale(40),
     height: moderateVerticalScale(320),
-    width: windowWidth,
     borderRadius: scale(20),
     position: 'absolute',
     zIndex: 3,
@@ -167,7 +157,6 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     height: moderateVerticalScale(60),
-    width: windowWidth,
     paddingHorizontal: scale(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -190,7 +179,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: windowWidth,
     paddingHorizontal: scale(20),
   },
   headerText: {
@@ -227,7 +215,6 @@ const styles = StyleSheet.create({
   },
   nameView: {
     flexDirection: 'column',
-    width: windowWidth,
     alignItems: 'center',
     gap: scale(7),
   },

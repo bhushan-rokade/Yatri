@@ -23,6 +23,8 @@ import SearchIcon from '../../icons/SearchIcon';
 import ClockIcon from '../../icons/ClockIcon';
 import CalendarIcon from '../../icons/CalendarIcon';
 import { useNavigation } from '@react-navigation/native';
+import SideScrollList from './SideScrollList';
+import Tags from './Tags';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const tags = [
@@ -88,7 +90,6 @@ const forYouData = [
 ];
 export default function Home() {
   const [searchText, setSearchText] = useState('');
-  const [selectedTag, setSelectedTag] = useState(null);
   const navigation = useNavigation();
   return (
     <>
@@ -150,77 +151,13 @@ export default function Home() {
                 </TouchableOpacity>
               )}
             </View>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}>
-              <View style={styles.tagsView}>
-                {tags.map((item, index) => {
-                  return (
-                    <TouchableOpacity
-                      style={
-                        selectedTag == index ? styles.selectedTag : styles.tag
-                      }
-                      key={index}
-                      onPress={() => {
-                        setSelectedTag(index);
-                      }}>
-                      <Text
-                        style={{
-                          color: selectedTag == index ? 'white' : 'grey',
-                          fontFamily: font.medium,
-                        }}>
-                        {item.name}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            </ScrollView>
+            <Tags data={tags} />
             <View style={styles.upcomingView}>
               <View style={styles.upcomingTextView}>
                 <Text style={styles.upcomingText}>Upcoming Near You!</Text>
                 <Text style={styles.seeMore}>See More</Text>
               </View>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                style={{
-                  marginTop: moderateVerticalScale(20),
-                }}>
-                <View style={styles.upcomingList}>
-                  {upcomingData.map((item, index) => {
-                    return (
-                      <ImageBackground
-                        key={index}
-                        style={styles.upcomingItemContainer}
-                        imageStyle={styles.bgimageStyle}
-                        source={require('./../../assets/Images/raigad.jpg')}>
-                        <TouchableOpacity style={styles.upcomingItem}>
-                          <View style={styles.locationTextView}>
-                            <ClockIcon color='white' size={scale(15)} />
-                            <Text style={styles.locationtext}>
-                              {' '}
-                              {item.daysRemaining} days
-                            </Text>
-                          </View>
-                          <View style={styles.details}>
-                            <Text style={styles.locationHeading}>
-                              {item.locationName}
-                            </Text>
-                            <View style={{ flexDirection: 'row' }}>
-                              <UserIcon size={scale(15)} color='white' />
-                              <Text style={styles.personName}>
-                                {' '}
-                                {item.personName}
-                              </Text>
-                            </View>
-                          </View>
-                        </TouchableOpacity>
-                      </ImageBackground>
-                    );
-                  })}
-                </View>
-              </ScrollView>
+              <SideScrollList data={upcomingData} />
             </View>
             <View style={styles.forYouView}>
               <View
@@ -327,30 +264,6 @@ const styles = StyleSheet.create({
     fontSize: scale(10),
     fontFamily: font.bold,
   },
-  upcomingItem: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    height: moderateVerticalScale(250),
-    width: moderateScale(200),
-    borderRadius: scale(20),
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  bgimageStyle: {
-    borderRadius: scale(20),
-    objectFit: 'cover',
-  },
-  upcomingItemContainer: {
-    height: moderateVerticalScale(250),
-    width: moderateScale(200),
-    borderRadius: scale(20),
-  },
-  upcomingList: {
-    height: moderateVerticalScale(280),
-    justifyContent: 'center',
-    paddingHorizontal: scale(20),
-    flexDirection: 'row',
-    gap: scale(20),
-  },
   seeMore: {
     fontFamily: font.semiBold,
     fontSize: scale(10),
@@ -370,30 +283,6 @@ const styles = StyleSheet.create({
   upcomingView: {
     marginTop: moderateVerticalScale(20),
     flexDirection: 'column',
-  },
-  selectedTag: {
-    backgroundColor: colors.primaryColor,
-    height: scale(30),
-    width: scale(75),
-    justifyContent: 'center',
-    borderRadius: scale(10),
-    alignItems: 'center',
-  },
-  tag: {
-    height: scale(30),
-    width: scale(75),
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    borderRadius: scale(10),
-    alignItems: 'center',
-  },
-  tagsView: {
-    marginTop: moderateVerticalScale(20),
-    gap: scale(15),
-    flexDirection: 'row',
-    paddingHorizontal: scale(10),
   },
   searchInput: {
     width: windowWidth / 1.75,
