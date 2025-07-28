@@ -30,4 +30,5 @@ export const routes = {
   ENTEROTP: 'EnterOtp',
   CHANGEPASSWORD: 'ChangePassword',
   HELPANDSUPPORT: 'HelpSupport',
+  EDITPROFILE: 'EditProfile',
 };

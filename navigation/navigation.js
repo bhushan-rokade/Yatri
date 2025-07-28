@@ -13,6 +13,7 @@ import ForgotPassword from '../src/screens/ForgotPassword/ForgotPassword';
 import EnterOtp from '../src/screens/EnterOtp/EnterOtp';
 import ChangePassword from '../src/screens/ChangePassword/ChangePassword';
 import HelpSupport from '../src/screens/HelpSupport/HelpSupport';
+import EditProfile from '../src/screens/EditProfile/EditProfile';
 
 const Stack = createStackNavigator();
 
@@ -106,6 +107,15 @@ function MyStack() {
         <Stack.Screen
           name={routes.HELPANDSUPPORT}
           component={HelpSupport}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.EDITPROFILE}
+          component={EditProfile}
           options={{
             animationEnabled: true,
             animationTypeForReplace: 'push',

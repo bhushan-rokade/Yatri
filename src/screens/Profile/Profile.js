@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   Text,
@@ -25,7 +24,7 @@ import HeartIcon from '../../icons/HeartIcon';
 import QuestionMarkCircleIcon from '../../icons/QuestionMarkCircle';
 
 export default function Profile() {
-  const { width: windowWidth } = useWindowDimensions(); // ✅ Correct way to get screen width
+  const { width: windowWidth } = useWindowDimensions();
   const navigation = useNavigation();
 
   return (
@@ -37,7 +36,9 @@ export default function Profile() {
             <LeftArrowIcon size={scale(33)} color={'black'} />
           </TouchableOpacity>
           <Text style={styles.headerText}>Profile</Text>
-          <TouchableOpacity style={styles.editBtn}>
+          <TouchableOpacity
+            style={styles.editBtn}
+            onPress={() => navigation.navigate(routes.EDITPROFILE)}>
             <EditIcon size={scale(12)} color={colors.linkViolet} />
             <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
@@ -113,7 +114,14 @@ export default function Profile() {
           </View>
           <RightArrowIcon size={scale(23)} color='grey' />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.logoutBtn}>
+        <TouchableOpacity
+          style={styles.logoutBtn}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: routes.ONBOARD }],
+            });
+          }}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>
