@@ -14,6 +14,7 @@ import EnterOtp from '../src/screens/EnterOtp/EnterOtp';
 import ChangePassword from '../src/screens/ChangePassword/ChangePassword';
 import HelpSupport from '../src/screens/HelpSupport/HelpSupport';
 import EditProfile from '../src/screens/EditProfile/EditProfile';
+import AddTrip from '../src/screens/AddTrip/AddTrip';
 
 const Stack = createStackNavigator();
 
@@ -89,6 +90,15 @@ function MyStack() {
         <Stack.Screen
           name={routes.HOME}
           component={Home}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+            presentation: 'screen',
+          }}
+        />
+        <Stack.Screen
+          name={routes.ADDTRIP}
+          component={AddTrip}
           options={{
             animationEnabled: true,
             animationTypeForReplace: 'push',

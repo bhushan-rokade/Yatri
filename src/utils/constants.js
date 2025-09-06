@@ -31,4 +31,5 @@ export const routes = {
   CHANGEPASSWORD: 'ChangePassword',
   HELPANDSUPPORT: 'HelpSupport',
   EDITPROFILE: 'EditProfile',
+  ADDTRIP: 'AddTrip',
 };

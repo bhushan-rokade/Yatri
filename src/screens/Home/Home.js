@@ -25,6 +25,7 @@ import CalendarIcon from '../../icons/CalendarIcon';
 import { useNavigation } from '@react-navigation/native';
 import SideScrollList from './SideScrollList';
 import Tags from './Tags';
+import PlusIcon from '../../icons/PlusIcon';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 const tags = [
@@ -113,11 +114,18 @@ export default function Home() {
                   </TouchableOpacity>
                 </View>
               </View>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(routes.PROFILE)}
-                style={styles.usericon}>
-                <UserIcon size={30} color='black' />
-              </TouchableOpacity>
+              <View style={styles.headerButtonView}>
+                <TouchableOpacity
+                  style={styles.usericon}
+                  onPress={() => navigation.navigate(routes.ADDTRIP)}>
+                  <PlusIcon size={30} color='black' />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate(routes.PROFILE)}
+                  style={styles.usericon}>
+                  <UserIcon size={30} color='black' />
+                </TouchableOpacity>
+              </View>
             </View>
             <View style={styles.searchView}>
               <View style={styles.searchicon}>
@@ -208,6 +216,11 @@ export default function Home() {
   );
 }
 const styles = StyleSheet.create({
+  headerButtonView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: scale(15),
+  },
   forYouInfoView: {
     flexDirection: 'column',
     gap: scale(3),
