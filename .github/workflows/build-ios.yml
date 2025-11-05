@@ -6,7 +6,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write
+  contents: write   # required for creating releases
 
 jobs:
   build-ios:
@@ -56,13 +56,13 @@ jobs:
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
           <dict>
-            <key>method</key><string>ad-hoc</string>
-            <key>signingStyle</key><string>manual</string>
+            <key>method</key><string>release-testing</string>
             <key>compileBitcode</key><false/>
             <key>stripSwiftSymbols</key><true/>
-            <key>teamID</key><string></string>
+            <key>signingStyle</key><string>manual</string>
             <key>signingCertificate</key><string></string>
             <key>provisioningProfiles</key><dict/>
+            <key>manageAppVersionAndBuildNumber</key><false/>
           </dict>
           </plist>
           EOF
@@ -73,11 +73,14 @@ jobs:
             -exportOptionsPlist build/export/ExportOptions.plist \
             CODE_SIGNING_ALLOWED=NO
 
-      - name: Upload iOS IPA Artifact
+          # Rename IPA to include run number
+          mv build/export/yatrinew.ipa build/export/yatrinew-v${GITHUB_RUN_NUMBER}.ipa
+
+      - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-ipa
-          path: ios/build/export/*.ipa
+          path: ios/build/export/yatrinew-v${{ github.run_number }}.ipa
 
       - name: Create GitHub Release and Upload IPA
         uses: softprops/action-gh-release@v1
@@ -85,6 +88,6 @@ jobs:
           tag_name: v${{ github.run_number }}
           name: "iOS Build ${{ github.run_number }}"
           body: "Unsigned iOS IPA from CI pipeline"
-          files: ios/build/export/*.ipa
+          files: ios/build/export/yatrinew-v${{ github.run_number }}.ipa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
