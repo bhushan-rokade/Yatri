@@ -1,4 +1,4 @@
-name: Build iOS App (Unsigned)
+name: Build iOS IPA (Unsigned)
 
 on:
   push:
@@ -13,7 +13,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -31,7 +32,7 @@ jobs:
           sed -i '' 's/CODE_SIGN_IDENTITY = .*/CODE_SIGN_IDENTITY = "";/' yatrinew.xcodeproj/project.pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = .*/DEVELOPMENT_TEAM = "";/' yatrinew.xcodeproj/project.pbxproj
 
-      - name: Build iOS App (Unsigned)
+      - name: Build iOS Archive (Unsigned)
         run: |
           cd ios
           xcodebuild \
@@ -43,20 +44,47 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             DEVELOPMENT_TEAM="" \
-            -derivedDataPath build
+            -archivePath build/yatrinew.xcarchive \
+            clean archive
 
-      - name: Upload iOS Build Artifact
+      - name: Export Unsigned IPA
+        run: |
+          cd ios
+          mkdir -p build/export
+          cat <<EOF > build/export/ExportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key><string>ad-hoc</string>
+            <key>signingStyle</key><string>manual</string>
+            <key>compileBitcode</key><false/>
+            <key>stripSwiftSymbols</key><true/>
+            <key>teamID</key><string></string>
+            <key>signingCertificate</key><string></string>
+            <key>provisioningProfiles</key><dict/>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild -exportArchive \
+            -archivePath build/yatrinew.xcarchive \
+            -exportPath build/export \
+            -exportOptionsPlist build/export/ExportOptions.plist \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload iOS IPA Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ios-release
-          path: ios/build/Build/Products/Release-iphoneos/*.app
+          name: ios-ipa
+          path: ios/build/export/*.ipa
 
-      - name: Create GitHub Release and Upload iOS App
+      - name: Create GitHub Release and Upload IPA
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ github.run_number }}
           name: "iOS Build ${{ github.run_number }}"
-          body: "Unsigned iOS build from CI pipeline"
-          files: ios/build/Build/Products/Release-iphoneos/*.app
+          body: "Unsigned iOS IPA from CI pipeline"
+          files: ios/build/export/*.ipa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
