@@ -8,6 +8,7 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,7 +21,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npx jetify
+          # Run Jetifier only if needed (for older RN libs)
+          npx jetify || echo "Jetify skipped"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -33,8 +35,18 @@ jobs:
           cd android
           ./gradlew assembleRelease
 
-      - name: Upload APK Artifact
+      - name: Upload APK as Workflow Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Create GitHub Release and Upload APK
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.run_number }}
+          name: "Android Build ${{ github.run_number }}"
+          body: "Automated build from CI pipeline"
+          files: android/app/build/outputs/apk/release/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
