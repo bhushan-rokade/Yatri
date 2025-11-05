@@ -1,0 +1,55 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx pod-install ios
+
+      - name: Set up Xcode
+        run: |
+          sudo xcode-select -switch /Applications/Xcode.app
+          xcodebuild -version
+
+      - name: Build iOS App (Release)
+        run: |
+          cd ios
+          xcodebuild \
+            -workspace YourApp.xcworkspace \
+            -scheme YourApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build
+
+      - name: Upload iOS Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release
+          path: ios/build/Build/Products/Release-iphoneos/*.app
+
+      - name: Create GitHub Release and Upload iOS App
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.run_number }}
+          name: "iOS Build ${{ github.run_number }}"
+          body: "Automated iOS release build from CI"
+          files: ios/build/Build/Products/Release-iphoneos/*.app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
