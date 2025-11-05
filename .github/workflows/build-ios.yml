@@ -32,8 +32,8 @@ jobs:
         run: |
           cd ios
           xcodebuild \
-            -workspace YourApp.xcworkspace \
-            -scheme YourApp \
+            -workspace yatrinew.xcworkspace \
+            -scheme yatrinew \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build
