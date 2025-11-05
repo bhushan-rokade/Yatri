@@ -54,6 +54,7 @@ export default function AddTrip() {
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
+  //Test
 
   return (
     <ScrollView
