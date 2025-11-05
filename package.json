@@ -29,7 +29,8 @@
     "react-native-webview": "^13.16.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "jetifier": "^2.0.0"
   },
   "private": true
 }
